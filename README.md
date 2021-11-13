@@ -25,7 +25,7 @@
 
 <details>
 <summary>View all return values</summary>
-<div markdown="1">
+
  - Return
 	 - id
 	 - level
@@ -41,7 +41,7 @@
 		 - lp
 		 - tier
 		 - wins
-</div>
+
 </details>
 
 ## Caitlyn DDragon
