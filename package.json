@@ -1,0 +1,19 @@
+{
+  "name": "caitlyn.js",
+  "version": "1.0.0",
+  "description": "It makes it simple to request complex Riot Api.",
+  "main": "caitlyn.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Emin-G/Caitlyn.js.git"
+  },
+  "author": "Emin-G",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Emin-G/Caitlyn.js/issues"
+  },
+  "homepage": "https://github.com/Emin-G/Caitlyn.js#readme"
+}
