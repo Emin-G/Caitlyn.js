@@ -99,7 +99,7 @@ function getSummoner (token, name, callback) {
 
                     let today = new Date();
 
-                    var starten = new Date( sptv4.gameStartTime );
+                    var starten = new Date(sptv4.gameStartTime);
     
                     let tdmin = parseInt(today.getMinutes());
     
@@ -107,9 +107,13 @@ function getSummoner (token, name, callback) {
                         tdmin = tdmin + ((parseInt(today.getHours()) - parseInt(starten.getHours())) * 60);
                     }
 
+                    //시작한 지 얼마 안 됐을 경우 시간이 이상하게 뜸
+                    if (tdmin - parseInt(starten.getMinutes()) > 0) tdmin = tdmin - parseInt(starten.getMinutes());
+                    else tdmin = 0;
+
                     sumlge["now"] = {
                         queueId: sptv4.gameQueueConfigId,
-                        time: tdmin - parseInt(starten.getMinutes())
+                        time: tdmin
                     }
 
                 }

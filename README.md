@@ -1,6 +1,6 @@
 ### **♥** Korean follows English
 
-# **Caitlyn.js**
+# Caitlyn.js Preview
 <p align="center">
 	<img src="https://cdn.discordapp.com/attachments/807077862880444456/908993991276642344/caitlyn.jpg" alt="Pool Party Caitlyn" width="40%">
 </p>
@@ -8,12 +8,12 @@
 > **Complex** Riot Api to **Simple**.
 
 
-## **Setup**
+## Setup
 
  1. Clone this repo in your project.
- 2. `const caitlyn = require("./caitlyn/caitlyn");`
+ 2. `const caitlyn = require("./caitlyn");`
 
-## **Usage**
+## Usage
 
  - **Get Summoner's Info**
 
@@ -44,11 +44,11 @@
 
 </details>
 
-## **Caitlyn DDragon**
+## Caitlyn DDragon
 
  - **Before using it**
 	 - This function is under development.
-	 - So, it may cause many errors and low performance.
+	 - There may be many errors and low performance.
 
  - **Get all the DDragon version list**
 
@@ -56,6 +56,9 @@
 
     caitlyn.ddragon.version((ddver) => {
 	    console.log(ddver);
+        
+        console.log(ddver[0]);
+        //Latest DDragon Version
 	});
 
  - **Get game type from Queue ID**

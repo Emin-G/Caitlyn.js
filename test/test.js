@@ -1,4 +1,4 @@
-const caitlyn = require("../caitlyn");
+const caitlyn = require("../../CaitlynJS");
 
 caitlyn.getSummoner("", "", (data) => {
     console.log(data);
