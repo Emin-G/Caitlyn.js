@@ -24,7 +24,6 @@ function getSummoner (token, name, callback) {
         path: encodeURI("/lol/summoner/v4/summoners/by-name/" + name + "?api_key=" + token)
     }
 
-    //소환사 정보 가져오기기
     gety(options, (sumv4) => {
 
         if (sumv4.status) return callback({status: "Not Found / Sumv4"});
@@ -34,7 +33,6 @@ function getSummoner (token, name, callback) {
             path: encodeURI("/lol/league/v4/entries/by-summoner/" + sumv4.id + "?api_key=" + token)
         }
 
-        //랭크 정보 가져오기기
         gety(options, (lgev4) => {
 
             if (sumv4.status) return callback({status: "Not Found / Lgev4"});
@@ -46,13 +44,11 @@ function getSummoner (token, name, callback) {
                 profileIconId: sumv4.profileIconId
             }
 
-            //랭크가 있나 확인
             if (lgev4.length > 0) {
 
                 var rnksolo;
                 var rnkflex;
 
-                //첫번째 데이터가 솔랭인지 자랭인지 확인
                 if (lgev4[0].queueType === "RANKED_SOLO_5x5") {
                     rnksolo = 0;
                     rnkflex = 1;
@@ -61,7 +57,6 @@ function getSummoner (token, name, callback) {
                     rnkflex = 0;
                 }
 
-                //솔랭 랭크가 있나 확인
                 if (lgev4[rnksolo]) {
 
                     sumlge["ranked_solo"] = {
@@ -73,7 +68,6 @@ function getSummoner (token, name, callback) {
 
                 }
 
-                //자랭 랭크가 있나 확인
                 if (lgev4[rnkflex]) {
 
                     sumlge["ranked_flex"] = {
@@ -92,7 +86,6 @@ function getSummoner (token, name, callback) {
                 path: encodeURI("/lol/spectator/v4/active-games/by-summoner/" + sumv4.id + "?api_key=" + token)
             }
 
-            //현재 플레이 중 인지 확인
             gety(options, (sptv4) => {
 
                 if (!sptv4.status) {
@@ -107,7 +100,6 @@ function getSummoner (token, name, callback) {
                         tdmin = tdmin + ((parseInt(today.getHours()) - parseInt(starten.getHours())) * 60);
                     }
 
-                    //시작한 지 얼마 안 됐을 경우 시간이 이상하게 뜸
                     if (tdmin - parseInt(starten.getMinutes()) > 0) tdmin = tdmin - parseInt(starten.getMinutes());
                     else tdmin = 0;
 

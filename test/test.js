@@ -1,6 +1,8 @@
 const caitlyn = require("../../CaitlynJS");
 
-caitlyn.getSummoner("", "", (data) => {
+const token = "";
+
+caitlyn.getSummoner(token, "", (data) => {
     console.log(data);
 });
 
