@@ -14,7 +14,7 @@ If you are watching this project for not testing but using it for your important
 ## Setup
 
  1. Clone this repo in your project.
- 2. `const caitlyn = require("./caitlyn");`
+ 2. `const caitlyn = require("./Caitlyn.js");`
 
 ## Usage
 
@@ -95,7 +95,7 @@ We are aware of this problem and will fix it ASAP.
 ## 설치
 
  1. 이 레포지토리를 프로젝트 폴더 안에 복제 하세요.
- 2. `const caitlyn = require("./caitlyn");`
+ 2. `const caitlyn = require("./Caitlyn.js");`
 
 ## 사용법
 
