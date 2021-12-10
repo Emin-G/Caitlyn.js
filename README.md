@@ -7,11 +7,9 @@
 
 > **Complex** Riot Api to **Simple**.
 
-Before starting, this project is **under development.**
-many essential functions are not included yet
-and some functions are **terribly unstable.**
-If you are watching this project for not **testing**
-but using it for your **important** project, <u>Please re-think before using it.</u>
+Before starting, this project is **under development.**  
+many essential functions are not included yet and some functions are **terribly unstable.**  
+If you are watching this project for not testing but using it for your important project, <u>**Please re-think before using it.**</u>
 
 ## Setup
 
@@ -51,7 +49,7 @@ but using it for your **important** project, <u>Please re-think before using it.
 		 - <p style="color:#e01032">*time*</p>
 
 </details>
-.now.time is <u>NOT working correctly.</u>
+.now.time is <u>NOT working correctly.</u>  
 
 We are aware of this problem and will fix it ASAP.
 
@@ -88,10 +86,9 @@ We are aware of this problem and will fix it ASAP.
 
 > **복잡한** 라이엇 Api를 **간단하게**!
 
-시작하기 전에, 이 프로젝트는 **개발 중입니다.**
-끔찍할 정도로 불안정하고, 많은 기능들이 아직 구현되지 않았습니다.
-기능 테스트가 아닌 중요한 프로젝트에 사용하려고 한다면
-<u>사용하기 전에 다시 한번 생각하세요.</u>
+시작하기 전에, 이 프로젝트는 **개발 중입니다.**  
+끔찍할 정도로 **불안정**하고, 많은 기능들이 아직 **구현되지 않았습니다**.  
+기능 테스트가 아닌 중요한 프로젝트에 사용하려고 한다면 <u>**사용하기 전에 다시 한번 생각하세요.**</u>
 
 ## 설치
 
@@ -131,7 +128,7 @@ We are aware of this problem and will fix it ASAP.
 		 - <p style="color:#e01032">*time*</p>
 
 </details>
-.now.time 은 <u>버그가 있습니다.</u>
+.now.time 은 <u>버그가 있습니다.</u>  
 
 현재 이 버그를 인지하고 있으며, 최대한 빠른 시일 내에 수정될 예정입니다.
 
