@@ -11,6 +11,8 @@ Before starting, this project is **under development.**
 many essential functions are not included yet and some functions are **terribly unstable.**  
 If you are watching this project for not testing but using it for your important project, <u>**Please re-think before using it.**</u>
 
+#### <a href="https://github.com/Emin-G/Caitlyn.js-Discord" target="_blank">Example Discord Bot</a>
+
 ## Setup
 
  1. Clone this repo in your project.
@@ -91,6 +93,8 @@ We are aware of this problem and will fix it ASAP.
 시작하기 전에, 이 프로젝트는 **개발 중입니다.**  
 끔찍할 정도로 **불안정**하고, 많은 기능들이 아직 **구현되지 않았습니다**.  
 기능 테스트가 아닌 중요한 프로젝트에 사용하려고 한다면 <u>**사용하기 전에 다시 한번 생각하세요.**</u>
+
+#### <a href="https://github.com/Emin-G/Caitlyn.js-Discord" target="_blank">디스코드 봇 예제 보기</a>
 
 ## 설치
 
