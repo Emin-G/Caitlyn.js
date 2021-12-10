@@ -2,7 +2,7 @@
 
 # Caitlyn.js Preview
 <p align="center">
-	<img src="https://cdn.discordapp.com/attachments/807077862880444456/908993991276642344/caitlyn.jpg" alt="Pool Party Caitlyn" width="40%">
+	<img src="./caitlyn.jpg" alt="Pool Party Caitlyn" width="40%">
 </p>
 
 > **Complex** Riot Api to **Simple**.
@@ -83,7 +83,7 @@ We are aware of this problem and will fix it ASAP.
 
 # Caitlyn.js Preview -Kr
 <p align="center">
-	<img src="https://cdn.discordapp.com/attachments/807077862880444456/908993991276642344/caitlyn.jpg" alt="Pool Party Caitlyn" width="40%">
+	<img src="./caitlyn.jpg" alt="Pool Party Caitlyn" width="40%">
 </p>
 
 > **복잡한** 라이엇 Api를 **간단하게**!
