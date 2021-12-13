@@ -9,7 +9,7 @@
 
 Before starting, this project is **under development.**  
 many essential functions are not included yet and some functions are **terribly unstable.**  
-If you are watching this project for not testing but using it for your important project, <u>**Please re-think before using it.**</u>
+If you are watching this project not for testing but for using it for your important project, <u>**Please re-think before using it.**</u>
 
 #### <a href="https://github.com/Emin-G/Caitlyn.js-Discord" target="_blank">Example Discord Bot</a>
 
