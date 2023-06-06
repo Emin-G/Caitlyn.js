@@ -26,10 +26,12 @@
 토큰은 아래와 같이 dotenv를 사용하여 관리하는 것을 매우 권장합니다.
 
 index.js
+
     require("dotenv").config();
 	caitlyn.setToken(process.env.RIOT_API);
 
 .env
+
 	RIOT_API=RGAPI-...
 
  - **소환사의 정보 불러오기**
@@ -70,17 +72,23 @@ index.js
 </details>
 
 summoner.profileIconId 같은 경우
+
 	console.log("https://ddragon.leagueoflegends.com/cdn/" + ddver[0] + "/img/profileicon/" + summoner.profileIconId + ".png");
+
 로 소환사의 프로필 사진을 가져올 수 있습니다.
 ddver[0] 은 아래의 DDragon - version 함수를 참고해주세요.
 
 summoner.now.queueId 같은 경우
+
     let queinf = await caitlyn.ddragon.queueInfo(summoner.now.queueId);
+
 로 현재 플레이 중인 게임이 무엇인지 ( ex. 칼바람나락, URF ) 찾을 수 있습니다.
 
 summoner.now.time 같은 경우
+
     let time_tmp = Math.floor(summoner.now.time / 60);
     console.log("**" + time_tmp + "** 분 **" + (summoner.now.time - (time_tmp * 60)) + "** 초");
+	
 와 같이 사용하시면 됩니다.
 
 > caitlyn.**getRecentMatch**( *summoner*, count, *Callback* );
