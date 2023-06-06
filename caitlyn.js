@@ -14,7 +14,6 @@ async function getSummoner (name, callback) {
             return null;
         });
         const sptv4 = await api_sptv4(sumv4, token_holder).catch((error) => {
-            console.log(error);
             return null;
         });
 
