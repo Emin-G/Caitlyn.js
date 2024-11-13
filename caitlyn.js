@@ -7,20 +7,32 @@ function setToken (token) {
     token_holder = token;
 }
 
-async function getSummoner (name, callback) {
-    await api_sumv4(name, token_holder).then(async (sumv4) => {
-        const lgev4 = await api_lgev4(sumv4, token_holder).catch((error) => {
+async function getSummoner (name, tag, callback) {
+    await api_accv4(name, tag, token_holder).then(async (accv4) => {
+
+        await api_sumv4(accv4.puuid, token_holder).then(async (sumv4) => {
+
+            const lgev4 = await api_lgev4(sumv4, token_holder).catch((error) => {
+                console.log(error);
+                return null;
+            });
+
+            const sptv4 = await api_sptv4(sumv4, token_holder).catch((error) => {
+                console.log(error);
+                return null;
+            });
+    
+            sumv4["name"] = accv4.name;
+            sumv4["tag"] = accv4.tag;
+            sumv4["rank"] = lgev4;
+            sumv4["now"] = sptv4;
+    
+            return callback(sumv4);
+        }).catch((error) => {
             console.log(error);
             return null;
         });
-        const sptv4 = await api_sptv4(sumv4, token_holder).catch((error) => {
-            return null;
-        });
 
-        sumv4["rank"] = lgev4;
-        sumv4["now"] = sptv4;
-
-        return callback(sumv4);
     }).catch((error) => {
         console.log(error);
         return null;
@@ -36,11 +48,32 @@ async function getRecentMatch (summoner, count, callback) {
     return callback(matv5);
 }
 
-async function api_sumv4 (name, token_holder) {
+async function api_accv4 (name, tag, token_holder) {
+    return new Promise(function(resolve, reject) {
+        options = {
+            host: "asia.api.riotgames.com",
+            path: encodeURI("/riot/account/v1/accounts/by-riot-id/" + name + "/" + tag + "?api_key=" + token_holder)
+        }
+
+        gety(options, (accv4) => {
+
+            if (accv4.status) return reject(new Error("Not Found / Accv4 - " + accv4.status.message));
+
+            return resolve({
+                name: accv4.gameName,
+                tag: accv4.tagLine,
+                puuid: accv4.puuid
+            });
+
+        });
+    });
+}
+
+async function api_sumv4 (puuid, token_holder) {
     return new Promise(function(resolve, reject) {
         options = {
             host: "kr.api.riotgames.com",
-            path: encodeURI("/lol/summoner/v4/summoners/by-name/" + name + "?api_key=" + token_holder)
+            path: encodeURI("/lol/summoner/v4/summoners/by-puuid/" + puuid + "?api_key=" + token_holder)
         }
 
         gety(options, (sumv4) => {
@@ -48,7 +81,6 @@ async function api_sumv4 (name, token_holder) {
             if (sumv4.status) return reject(new Error("Not Found / Sumv4 - " + sumv4.status.message));
 
             return resolve({
-                name: sumv4.name,
                 id: sumv4.id,
                 puuid: sumv4.puuid,
                 level: sumv4.summonerLevel,
@@ -111,6 +143,7 @@ async function api_lgev4 (sumv4, token_holder) {
 
                 return resolve(lgeres);
             }
+            return resolve(null);
 
         });
     });
@@ -211,14 +244,7 @@ async function api_getMatchData (sumv4, matv5, ddver, token_holder) {
                     let sum_mat_dt = mat_dt["participants"][c];
 
                     return resolve([ mat_dt.gameCreation, {
-                        "time": {
-                            "year": mat_nd.getFullYear(),
-                            "month": mat_nd.getMonth(),
-                            "date": mat_nd.getDate(),
-                            "hour": mat_nd.getHours(),
-                            "min": mat_nd.getMinutes(),
-                            "sec": mat_nd.getSeconds()
-                        },
+                        "time": mat_nd.getTime(),
         
                         "duration": mat_dt.gameDuration,
         

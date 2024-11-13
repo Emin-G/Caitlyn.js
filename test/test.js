@@ -4,7 +4,7 @@ const token = "";
 
 caitlyn.setToken(token);
 
-caitlyn.getSummoner("", (summoner) => {
+caitlyn.getSummoner("", "", (summoner) => {
     console.log(summoner);
 
     caitlyn.getRecentMatch(summoner, 5, (matchs) => {
