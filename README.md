@@ -36,9 +36,9 @@ index.js
 
  - **소환사의 정보 불러오기**
 
-> caitlyn.**getSummoner**( *소환사 이름*, *Callback* );
+> caitlyn.**getSummoner**( *소환사 이름*, *태그*, *Callback* );
 
-    caitlyn.getSummoner(소환사 이름, (summoner) => {
+    caitlyn.getSummoner(소환사 이름, 태그, (summoner) => {
 	    console.log(summoner);
     });
 
@@ -49,6 +49,7 @@ index.js
 	 - id
 	 - level
 	 - name
+	 - tag
 	 - profileIconId
 	 - puuid
 	 - rank
@@ -117,13 +118,7 @@ summoner.now.time 같은 경우
 		 - kda ('/' 로 끊어져서 나옴 - ex. 10/4/6)
 		 - multiKill (최대 다중 킬 - 1 > X, 2 > 더블킬, 3 > 트리플킬)
 		 - queueId
-		 - time (언제 한건지)
-			 - year
-			 - month
-			 - date
-			 - hour
-			 - min
-			 - sec
+		 - time (언제 한건지, unixtimestamp)
 		 - win
 	 - (게임 번호)
 	  ...
