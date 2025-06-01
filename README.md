@@ -8,6 +8,9 @@
 **복잡한** 라이엇 Api를 **필요한 것만 간단하게**!
 </pre>
 
+## 🎉 2.2 업데이트
+- 코드를 비동기 방식으로 갈아 엎었어요!
+
 ## 🎉 2.1 업데이트
 - 닉네임-태그 체계를 적용하였어요.
 
@@ -36,11 +39,10 @@ index.js
 
  - **소환사의 정보 불러오기**
 
-> caitlyn.**getSummoner**( *소환사 이름*, *태그*, *Callback* );
+> caitlyn.**getSummoner**( *소환사 이름*, *태그* );
 
-    caitlyn.getSummoner(소환사 이름, 태그, (summoner) => {
-	    console.log(summoner);
-    });
+    let summoner = await caitlyn.getSummoner(소환사 이름, 태그);
+	console.log(summoner);
 
 <details>
 <summary>Return 값 보기</summary>
@@ -92,16 +94,14 @@ summoner.now.time 같은 경우
 	
 와 같이 사용하시면 됩니다.
 
-> caitlyn.**getRecentMatch**( *summoner*, count, *Callback* );
+> caitlyn.**getRecentMatch**( *summoner*, count );
 
-	caitlyn.getSummoner(소환사 이름, (summoner) => {
-		console.log(summoner);
+	let summoner = await caitlyn.getSummoner(소환사 이름, 태그);
+	console.log(summoner);
 
-		caitlyn.getRecentMatch(summoner, 5, (matchs) => {
-			console.log(matchs);
-			//최근 5개 게임 정보
-		});
-	});
+	let matchs = await caitlyn.getRecentMatch(summoner, 5);
+	console.log(matchs);
+	//최근 5개 게임 정보
 
 <details>
 <summary>Return 값 보기</summary>

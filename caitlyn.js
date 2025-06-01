@@ -1,4 +1,4 @@
-const https = require("https");
+const axios = require("axios");
 const ddragon = require("./ddragon/ddragon");
 
 let token_holder;
@@ -7,103 +7,103 @@ function setToken (token) {
     token_holder = token;
 }
 
-async function getSummoner (name, tag, callback) {
-    await api_accv4(name, tag, token_holder).then(async (accv4) => {
-
-        await api_sumv4(accv4.puuid, token_holder).then(async (sumv4) => {
-
-            const lgev4 = await api_lgev4(sumv4, token_holder).catch((error) => {
-                console.log(error);
-                return null;
-            });
-
-            const sptv4 = await api_sptv4(sumv4, token_holder).catch((error) => {
-                console.log(error);
-                return null;
-            });
-    
-            sumv4["name"] = accv4.name;
-            sumv4["tag"] = accv4.tag;
-            sumv4["rank"] = lgev4;
-            sumv4["now"] = sptv4;
-    
-            return callback(sumv4);
-        }).catch((error) => {
-            console.log(error);
-            return null;
+async function getSummoner (name, tag) {
+    return new Promise(async (resolve, reject) => {
+        let accv4 = await api_accv4(name, tag).catch((error) => {
+            return resolve({ code: 500, type: "accv4" });
         });
 
-    }).catch((error) => {
-        console.log(error);
-        return null;
+        let sumv4 = await api_sumv4(accv4.puuid).catch((error) => {
+            return resolve({ code: 500, type: "sumv4" });
+        });
+
+        let lgev4 = await api_lgev4(sumv4).catch((error) => {
+            return resolve({ code: 500, type: "lgev4" });
+        });
+
+        let sptv5 = await api_sptv5(sumv4).catch((error) => {
+            console.log(error);
+            return resolve({ code: 500, type: "sptv5" });
+        });
+
+        sumv4["code"] = 200;
+        sumv4["name"] = accv4.name;
+        sumv4["tag"] = accv4.tag;
+        sumv4["rank"] = lgev4;
+        sumv4["now"] = sptv5;
+
+        return resolve(sumv4);
     });
 }
 
-async function getRecentMatch (summoner, count, callback) {
-    const matv5 = await api_matv5(summoner, count, token_holder).catch((error) => {
-        console.log(error);
-        return null;
-    });
+async function getRecentMatch (summoner, count) {
+    return new Promise(async (resolve, reject) => {
+        const matv5 = await api_matv5(summoner, count).catch((error) => {
+            return resolve({ code: 500, type: "matv5" });
+        });;
 
-    return callback(matv5);
+        return resolve(matv5);
+    });
 }
 
-async function api_accv4 (name, tag, token_holder) {
-    return new Promise(function(resolve, reject) {
-        options = {
-            host: "asia.api.riotgames.com",
-            path: encodeURI("/riot/account/v1/accounts/by-riot-id/" + name + "/" + tag + "?api_key=" + token_holder)
-        }
+async function api_accv4 (name, tag) {
+    return new Promise(async (resolve, reject) => {
 
-        gety(options, (accv4) => {
+        let accv4 = await get_asia(encodeURI("riot/account/v1/accounts/by-riot-id/" + name + "/" + tag + "?api_key=" + token_holder));
+        if (!accv4) return reject(new Error("Not Found / Accv4"));
 
-            if (accv4.status) return reject(new Error("Not Found / Accv4 - " + accv4.status.message));
-
-            return resolve({
+        try {
+            accv4 = {
                 name: accv4.gameName,
                 tag: accv4.tagLine,
                 puuid: accv4.puuid
-            });
+            };
+        }
 
-        });
+        catch (error) {
+            return reject(new Error("Parse Failed / Accv4"));
+        }
+
+        return resolve(accv4);
+
     });
 }
 
-async function api_sumv4 (puuid, token_holder) {
-    return new Promise(function(resolve, reject) {
-        options = {
-            host: "kr.api.riotgames.com",
-            path: encodeURI("/lol/summoner/v4/summoners/by-puuid/" + puuid + "?api_key=" + token_holder)
-        }
+async function api_sumv4 (puuid) {
+    return new Promise(async (resolve, reject) => {
 
-        gety(options, (sumv4) => {
+        let sumv4 = await gety(encodeURI("lol/summoner/v4/summoners/by-puuid/" + puuid + "?api_key=" + token_holder));
+        if (!sumv4) return reject(new Error("Not Found / Sumv4"));
 
-            if (sumv4.status) return reject(new Error("Not Found / Sumv4 - " + sumv4.status.message));
-
-            return resolve({
+        try {
+            sumv4 = {
                 id: sumv4.id,
                 puuid: sumv4.puuid,
                 level: sumv4.summonerLevel,
                 profileIconId: sumv4.profileIconId
-            });
+            };
+        }
 
-        });
+        catch (error) {
+            return reject(new Error("Parse Failed / Sumv4"));
+        }
+
+        return resolve(sumv4);
+
     });
 }
 
-async function api_lgev4 (sumv4, token_holder) {
-    return new Promise(function(resolve, reject) {
-        options = {
-            host: "kr.api.riotgames.com",
-            path: encodeURI("/lol/league/v4/entries/by-summoner/" + sumv4.id + "?api_key=" + token_holder)
-        }
+async function api_lgev4 (sumv4) {
+    return new Promise(async (resolve, reject) => {
 
-        gety(options, (lgev4) => {
+        let lgev4 = await gety(encodeURI("lol/league/v4/entries/by-summoner/" + sumv4.id + "?api_key=" + token_holder));
+        if (!lgev4) return reject(new Error("Not Found / Lgev4"));
 
-            if (lgev4.status) return reject(new Error("Not Found / Lgev4 - " + lgev4.status.message));
+        if (lgev4.length > 0) {
 
-            if (lgev4.length > 0) {
+            let lgeres = new Map();
 
+            try {
                 let rnksolo;
                 let rnkflex;
 
@@ -114,8 +114,6 @@ async function api_lgev4 (sumv4, token_holder) {
                     rnksolo = 1;
                     rnkflex = 0;
                 }
-
-                let lgeres = new Map();
 
                 if (lgev4[rnksolo]) {
 
@@ -140,34 +138,37 @@ async function api_lgev4 (sumv4, token_holder) {
                     }
 
                 }
-
-                return resolve(lgeres);
             }
-            return resolve(null);
 
-        });
+            catch (error) {
+                return reject(new Error("Parse Failed / Lgev4"));
+            }
+
+            return resolve(lgeres);
+
+        }
+
+        return resolve(null);
+
     });
 }
 
-async function api_sptv4 (sumv4, token_holder) {
-    return new Promise(function(resolve, reject) {
-        options = {
-            host: "kr.api.riotgames.com",
-            path: encodeURI("/lol/spectator/v4/active-games/by-summoner/" + sumv4.id + "?api_key=" + token_holder)
-        }
+async function api_sptv5 (sumv4) {
+    return new Promise(async (resolve, reject) => {
 
-        gety(options, async (sptv4) => {
+        let sptv5 = await gety(encodeURI("lol/spectator/v5/active-games/by-summoner/" + sumv4.puuid + "?api_key=" + token_holder));
+        if (!sptv5) return resolve(null);
 
-            if (sptv4.status) return reject(new Error("Not Found / Sptv4 - " + sptv4.status.message));
+        let ddver = await ddragon.version();
+        if (!ddver) return reject(new Error("Not Found / ddrver"));
 
-            let ddver = await ddragon.version();
-
+        try {
             let chmp_tmp;
 
             //Catch Player from Game List
-            for (let c in sptv4["participants"]) {
-                if (sptv4["participants"][c]["summonerId"] === sumv4.id) {
-                    chmp_tmp = sptv4["participants"][c]["championId"];
+            for (let c in sptv5["participants"]) {
+                if (sptv5["participants"][c]["summonerId"] === sumv4.id) {
+                    chmp_tmp = sptv5["participants"][c]["championId"];
                     break;
                 }
             }
@@ -180,55 +181,56 @@ async function api_sptv4 (sumv4, token_holder) {
                 }
             }
 
-            return resolve({
-                queueId: sptv4.gameQueueConfigId,
-                time: sptv4.gameLength,
+            sptv5 = {
+                queueId: sptv5.gameQueueConfigId,
+                time: sptv5.gameLength,
                 champ: chmp_tmp
-            });
+            };
+        }
 
-        });
+        catch (error) {
+            return reject(new Error("Parse Failed / sptv5"));
+        }
+
+        return resolve(sptv5);
+
     });
 }
 
-async function api_matv5 (sumv4, count, token_holder) {
-    return new Promise(function(resolve, reject) {
-        options = {
-            host: "asia.api.riotgames.com",
-            path: encodeURI("/lol/match/v5/matches/by-puuid/" + sumv4.puuid + "/ids?start=0&count=" + count + "&api_key=" + token_holder)
-        }
+async function api_matv5 (sumv4, count) {
+    return new Promise(async (resolve, reject) => {
 
-        gety(options, async (matv5) => {
-            console.log(matv5);
+        let matv5 = await get_asia(encodeURI("lol/match/v5/matches/by-puuid/" + sumv4.puuid + "/ids?start=0&count=" + count + "&api_key=" + token_holder));
+        if (!matv5) return reject(new Error("Not Found / Matv5"));
 
-            if (matv5.status) return reject(new Error("Not Found / Matv5 - " + matv5.status.message));
+        let ddver = await ddragon.version();
+        if (!ddver) return reject(new Error("Not Found / ddrver"));
 
-            let ddver = await ddragon.version();
+        let matres = new Map();
 
-            let matres = new Map();
-
+        try {
             for (let q in matv5) {
-                await api_getMatchData(sumv4, matv5[q], ddver, token_holder).then((matdata) => {
-                    matres[matdata[0]] = matdata[1];
-                }).catch((error) => {
-                    return console.log(error);
-                });
+                let matdata = await api_getMatchData(sumv4, matv5[q], ddver);
+                matres[matdata[0]] = matdata[1];
             }
+        }
 
-            return resolve(matres);
-        });
+        catch (error) {
+            return reject(new Error("Parse Failed / Matv5"));
+        }
+
+        return resolve(matres);
+
     });
 }
 
-async function api_getMatchData (sumv4, matv5, ddver, token_holder) {
-    return new Promise(function(resolve, reject) {
-        let options = {
-            host: "asia.api.riotgames.com",
-            path: encodeURI("/lol/match/v5/matches/" + matv5 + "?api_key=" + token_holder)
-        }
+async function api_getMatchData (sumv4, matv5, ddver) {
+    return new Promise(async (resolve, reject) => {
 
-        gety(options, (mat_dt) => {
-            if (mat_dt.status) return reject(new Error("Not Found / Matv5-getMatchData - " + mat_dt.status.message));
-            
+        let mat_dt = await get_asia(encodeURI("lol/match/v5/matches/" + matv5 + "?api_key=" + token_holder));
+        if (!mat_dt) return reject(new Error("Not Found / Matv5-getMatchData"));
+        
+        try {
             mat_dt = mat_dt["info"];
 
             let mat_nd;
@@ -243,7 +245,7 @@ async function api_getMatchData (sumv4, matv5, ddver, token_holder) {
                 if (mat_dt["participants"][c].puuid === sumv4.puuid) {
                     let sum_mat_dt = mat_dt["participants"][c];
 
-                    return resolve([ mat_dt.gameCreation, {
+                    mat_dt = [mat_dt.gameCreation, {
                         "time": mat_nd.getTime(),
         
                         "duration": mat_dt.gameDuration,
@@ -260,28 +262,57 @@ async function api_getMatchData (sumv4, matv5, ddver, token_holder) {
                         "multiKill": sum_mat_dt.largestMultiKill,
                         "win": sum_mat_dt.win,
                         "dodge": sum_mat_dt.gameEndedInEarlySurrender
-                    }] );
+                    }];
+
+                    return resolve(mat_dt);
                 }
             }
-        });
+        }
+
+        catch (error) {
+            return reject(new Error("Parse Failed / Matv5-getMatchData"));
+        }
+
     });
 }
 
-function gety (option, callback) {
+function gety (path) {
+    return new Promise((resolve, reject) => {
 
-    https.get(option, function(res) {
-        let rse = "";
-        res.on("data", function(chunk) {
-            rse += chunk;
+        axios({
+            method: "GET",
+            url: "https://kr.api.riotgames.com/" + path
+        })
+
+        .then((response) => {
+            return resolve(response.data);
+        })
+        
+        .catch((error) => {
+            return resolve(null);
         });
-        res.on("end", function() {
-            rse = JSON.parse(rse);
-            return callback(rse);
-        });
-    }).on("error", function(e) {
-        return callback(null);
+
     });
+}
 
+function get_asia (path) {
+    return new Promise((resolve, reject) => {
+
+        axios({
+            method: "GET",
+            url: "https://asia.api.riotgames.com/" + path
+        })
+
+        .then((response) => {
+            return resolve(response.data);
+        })
+        
+        .catch((error) => {
+            console.log(error);
+            return resolve(null);
+        });
+
+    });
 }
 
 module.exports = {

@@ -1,15 +1,18 @@
 const caitlyn = require("../caitlyn.js");
 
 const token = "";
-
 caitlyn.setToken(token);
 
-caitlyn.getSummoner("", "", (summoner) => {
+async function main () {
+
+    let summoner = await caitlyn.getSummoner("", "");
     console.log(summoner);
 
-    caitlyn.getRecentMatch(summoner, 5, (matchs) => {
-        console.log(matchs);
-    });
-});
+    let matchs = await caitlyn.getRecentMatch(summoner, 5);
+    console.log(matchs);
+
+}
+
+main();
 
 setTimeout(()=>{}, 1000000);
