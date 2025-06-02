@@ -12,14 +12,17 @@ async function getAccount (name, tag) {
         let accv4 = await api_accv4(name, tag).catch((error) => {
             return resolve({ code: 500, type: "accv4" });
         });
+        if (!accv4) return;
 
         let sumv4 = await api_sumv4(accv4.puuid).catch((error) => {
             return resolve({ code: 500, type: "sumv4" });
         });
+        if (!sumv4) return;
 
         let lgev4 = await api_lgev4(sumv4).catch((error) => {
             return resolve({ code: 500, type: "lgev4" });
         });
+        if (!lgev4) return;
 
         sumv4["code"] = 200;
         sumv4["name"] = accv4.name;
@@ -34,19 +37,23 @@ async function getSummoner (name, tag) {
         let accv4 = await api_accv4(name, tag).catch((error) => {
             return resolve({ code: 500, type: "accv4" });
         });
+        if (!accv4) return;
 
         let sumv4 = await api_sumv4(accv4.puuid).catch((error) => {
             return resolve({ code: 500, type: "sumv4" });
         });
+        if (!sumv4) return;
 
         let lgev4 = await api_lgev4(sumv4).catch((error) => {
             return resolve({ code: 500, type: "lgev4" });
         });
+        if (!lgev4) return;
 
         let sptv5 = await api_sptv5(sumv4).catch((error) => {
             console.log(error);
             return resolve({ code: 500, type: "sptv5" });
         });
+        if (!sptv5) return;
 
         sumv4["code"] = 200;
         sumv4["name"] = accv4.name;
@@ -63,19 +70,23 @@ async function getSummonerP (puuid) {
         let accv4 = await api_accv4P(puuid).catch((error) => {
             return resolve({ code: 500, type: "accv4" });
         });
+        if (!accv4) return;
 
         let sumv4 = await api_sumv4(accv4.puuid).catch((error) => {
             return resolve({ code: 500, type: "sumv4" });
         });
+        if (!sumv4) return;
 
         let lgev4 = await api_lgev4(sumv4).catch((error) => {
             return resolve({ code: 500, type: "lgev4" });
         });
+        if (!lgev4) return;
 
         let sptv5 = await api_sptv5(sumv4).catch((error) => {
             console.log(error);
             return resolve({ code: 500, type: "sptv5" });
         });
+        if (!sptv5) return;
 
         sumv4["code"] = 200;
         sumv4["name"] = accv4.name;
@@ -92,6 +103,7 @@ async function getRecentMatch (summoner, count) {
         const matv5 = await api_matv5(summoner, count).catch((error) => {
             return resolve({ code: 500, type: "matv5" });
         });;
+        if (!matv5) return;
 
         return resolve(matv5);
     });
