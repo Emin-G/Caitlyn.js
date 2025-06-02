@@ -16,7 +16,6 @@ async function getAccount (name, tag) {
         if (!sumv4) return resolve({ code: 500, type: "sumv4" });
 
         let lgev4 = await api_lgev4(sumv4);
-        if (!lgev4) return resolve({ code: 500, type: "lgev4" });
 
         sumv4["code"] = 200;
         sumv4["name"] = accv4.name;
@@ -35,10 +34,8 @@ async function getSummoner (name, tag) {
         if (!sumv4) return resolve({ code: 500, type: "sumv4" });
 
         let lgev4 = await api_lgev4(sumv4);
-        if (!lgev4) return resolve({ code: 500, type: "lgev4" });
 
         let sptv5 = await api_sptv5(sumv4);
-        if (!sptv5) return resolve({ code: 500, type: "sptv5" });
 
         sumv4["code"] = 200;
         sumv4["name"] = accv4.name;
@@ -59,10 +56,8 @@ async function getSummonerP (puuid) {
         if (!sumv4) return resolve({ code: 500, type: "sumv4" });
 
         let lgev4 = await api_lgev4(sumv4);
-        if (!lgev4) return resolve({ code: 500, type: "lgev4" });
 
         let sptv5 = await api_sptv5(sumv4);
-        if (!sptv5) return resolve({ code: 500, type: "sptv5" });
 
         sumv4["code"] = 200;
         sumv4["name"] = accv4.name;
