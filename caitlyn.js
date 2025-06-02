@@ -25,6 +25,16 @@ async function getAccount (name, tag) {
     });
 }
 
+async function checkAccountP (puuid) {
+    return new Promise(async (resolve, reject) => {
+        let accv4 = await api_accv4P(puuid);
+        if (!accv4) return resolve({ code: 500, type: "accv4" });
+
+        accv4["code"] = 200;
+        return resolve(accv4);
+    });
+}
+
 async function getSummoner (name, tag) {
     return new Promise(async (resolve, reject) => {
         let accv4 = await api_accv4(name, tag);
@@ -373,6 +383,7 @@ function get_asia (path) {
 module.exports = {
     setToken: setToken,
     getAccount: getAccount,
+    checkAccountP: checkAccountP,
     getSummoner: getSummoner,
     getSummonerP: getSummonerP,
     getRecentMatch: getRecentMatch,
