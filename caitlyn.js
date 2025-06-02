@@ -7,9 +7,60 @@ function setToken (token) {
     token_holder = token;
 }
 
+async function getAccount (name, tag) {
+    return new Promise(async (resolve, reject) => {
+        let accv4 = await api_accv4(name, tag).catch((error) => {
+            return resolve({ code: 500, type: "accv4" });
+        });
+
+        let sumv4 = await api_sumv4(accv4.puuid).catch((error) => {
+            return resolve({ code: 500, type: "sumv4" });
+        });
+
+        let lgev4 = await api_lgev4(sumv4).catch((error) => {
+            return resolve({ code: 500, type: "lgev4" });
+        });
+
+        sumv4["code"] = 200;
+        sumv4["name"] = accv4.name;
+        sumv4["tag"] = accv4.tag;
+        sumv4["rank"] = lgev4;
+        return resolve(sumv4);
+    });
+}
+
 async function getSummoner (name, tag) {
     return new Promise(async (resolve, reject) => {
         let accv4 = await api_accv4(name, tag).catch((error) => {
+            return resolve({ code: 500, type: "accv4" });
+        });
+
+        let sumv4 = await api_sumv4(accv4.puuid).catch((error) => {
+            return resolve({ code: 500, type: "sumv4" });
+        });
+
+        let lgev4 = await api_lgev4(sumv4).catch((error) => {
+            return resolve({ code: 500, type: "lgev4" });
+        });
+
+        let sptv5 = await api_sptv5(sumv4).catch((error) => {
+            console.log(error);
+            return resolve({ code: 500, type: "sptv5" });
+        });
+
+        sumv4["code"] = 200;
+        sumv4["name"] = accv4.name;
+        sumv4["tag"] = accv4.tag;
+        sumv4["rank"] = lgev4;
+        sumv4["now"] = sptv5;
+
+        return resolve(sumv4);
+    });
+}
+
+async function getSummonerP (puuid) {
+    return new Promise(async (resolve, reject) => {
+        let accv4 = await api_accv4P(puuid).catch((error) => {
             return resolve({ code: 500, type: "accv4" });
         });
 
@@ -50,6 +101,29 @@ async function api_accv4 (name, tag) {
     return new Promise(async (resolve, reject) => {
 
         let accv4 = await get_asia(encodeURI("riot/account/v1/accounts/by-riot-id/" + name + "/" + tag + "?api_key=" + token_holder));
+        if (!accv4) return reject(new Error("Not Found / Accv4"));
+
+        try {
+            accv4 = {
+                name: accv4.gameName,
+                tag: accv4.tagLine,
+                puuid: accv4.puuid
+            };
+        }
+
+        catch (error) {
+            return reject(new Error("Parse Failed / Accv4"));
+        }
+
+        return resolve(accv4);
+
+    });
+}
+
+async function api_accv4P (puuid) {
+    return new Promise(async (resolve, reject) => {
+
+        let accv4 = await get_asia(encodeURI("riot/account/v1/accounts/by-puuid/" + puuid + "?api_key=" + token_holder));
         if (!accv4) return reject(new Error("Not Found / Accv4"));
 
         try {
@@ -317,7 +391,9 @@ function get_asia (path) {
 
 module.exports = {
     setToken: setToken,
+    getAccount: getAccount,
     getSummoner: getSummoner,
+    getSummonerP: getSummonerP,
     getRecentMatch: getRecentMatch,
     ddragon: require("./ddragon/ddragon")
 }
