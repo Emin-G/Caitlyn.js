@@ -8,7 +8,7 @@ async function main () {
     let summoner = await caitlyn.getSummoner("", "");
     console.log(summoner);
 
-    let matchs = caitlyn.getRecentMatch(summoner, 5);
+    let matchs = await caitlyn.getRecentMatch(summoner, 5);
     console.log(matchs);
 
 }
