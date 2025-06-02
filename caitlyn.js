@@ -9,20 +9,14 @@ function setToken (token) {
 
 async function getAccount (name, tag) {
     return new Promise(async (resolve, reject) => {
-        let accv4 = await api_accv4(name, tag).catch((error) => {
-            return resolve({ code: 500, type: "accv4" });
-        });
-        if (!accv4) return;
+        let accv4 = await api_accv4(name, tag);
+        if (!accv4) return resolve({ code: 500, type: "accv4" });
 
-        let sumv4 = await api_sumv4(accv4.puuid).catch((error) => {
-            return resolve({ code: 500, type: "sumv4" });
-        });
-        if (!sumv4) return;
+        let sumv4 = await api_sumv4(accv4.puuid);
+        if (!sumv4) return resolve({ code: 500, type: "sumv4" });
 
-        let lgev4 = await api_lgev4(sumv4).catch((error) => {
-            return resolve({ code: 500, type: "lgev4" });
-        });
-        if (!lgev4) return;
+        let lgev4 = await api_lgev4(sumv4);
+        if (!lgev4) return resolve({ code: 500, type: "lgev4" });
 
         sumv4["code"] = 200;
         sumv4["name"] = accv4.name;
@@ -34,26 +28,17 @@ async function getAccount (name, tag) {
 
 async function getSummoner (name, tag) {
     return new Promise(async (resolve, reject) => {
-        let accv4 = await api_accv4(name, tag).catch((error) => {
-            return resolve({ code: 500, type: "accv4" });
-        });
-        if (!accv4) return;
+        let accv4 = await api_accv4(name, tag);
+        if (!accv4) return resolve({ code: 500, type: "accv4" });
 
-        let sumv4 = await api_sumv4(accv4.puuid).catch((error) => {
-            return resolve({ code: 500, type: "sumv4" });
-        });
-        if (!sumv4) return;
+        let sumv4 = await api_sumv4(accv4.puuid);
+        if (!sumv4) return resolve({ code: 500, type: "sumv4" });
 
-        let lgev4 = await api_lgev4(sumv4).catch((error) => {
-            return resolve({ code: 500, type: "lgev4" });
-        });
-        if (!lgev4) return;
+        let lgev4 = await api_lgev4(sumv4);
+        if (!lgev4) return resolve({ code: 500, type: "lgev4" });
 
-        let sptv5 = await api_sptv5(sumv4).catch((error) => {
-            console.log(error);
-            return resolve({ code: 500, type: "sptv5" });
-        });
-        if (!sptv5) return;
+        let sptv5 = await api_sptv5(sumv4);
+        if (!sptv5) return resolve({ code: 500, type: "sptv5" });
 
         sumv4["code"] = 200;
         sumv4["name"] = accv4.name;
@@ -67,26 +52,17 @@ async function getSummoner (name, tag) {
 
 async function getSummonerP (puuid) {
     return new Promise(async (resolve, reject) => {
-        let accv4 = await api_accv4P(puuid).catch((error) => {
-            return resolve({ code: 500, type: "accv4" });
-        });
-        if (!accv4) return;
+        let accv4 = await api_accv4P(puuid);
+        if (!accv4) return resolve({ code: 500, type: "accv4" });
 
-        let sumv4 = await api_sumv4(accv4.puuid).catch((error) => {
-            return resolve({ code: 500, type: "sumv4" });
-        });
-        if (!sumv4) return;
+        let sumv4 = await api_sumv4(accv4.puuid);
+        if (!sumv4) return resolve({ code: 500, type: "sumv4" });
 
-        let lgev4 = await api_lgev4(sumv4).catch((error) => {
-            return resolve({ code: 500, type: "lgev4" });
-        });
-        if (!lgev4) return;
+        let lgev4 = await api_lgev4(sumv4);
+        if (!lgev4) return resolve({ code: 500, type: "lgev4" });
 
-        let sptv5 = await api_sptv5(sumv4).catch((error) => {
-            console.log(error);
-            return resolve({ code: 500, type: "sptv5" });
-        });
-        if (!sptv5) return;
+        let sptv5 = await api_sptv5(sumv4);
+        if (!sptv5) return resolve({ code: 500, type: "sptv5" });
 
         sumv4["code"] = 200;
         sumv4["name"] = accv4.name;
@@ -100,10 +76,8 @@ async function getSummonerP (puuid) {
 
 async function getRecentMatch (summoner, count) {
     return new Promise(async (resolve, reject) => {
-        const matv5 = await api_matv5(summoner, count).catch((error) => {
-            return resolve({ code: 500, type: "matv5" });
-        });;
-        if (!matv5) return;
+        const matv5 = await api_matv5(summoner, count);
+        if (!matv5) return resolve({ code: 500, type: "matv5" });
 
         return resolve(matv5);
     });
@@ -113,7 +87,7 @@ async function api_accv4 (name, tag) {
     return new Promise(async (resolve, reject) => {
 
         let accv4 = await get_asia(encodeURI("riot/account/v1/accounts/by-riot-id/" + name + "/" + tag + "?api_key=" + token_holder));
-        if (!accv4) return reject(new Error("Not Found / Accv4"));
+        if (!accv4) return resolve(null);
 
         try {
             accv4 = {
@@ -124,7 +98,7 @@ async function api_accv4 (name, tag) {
         }
 
         catch (error) {
-            return reject(new Error("Parse Failed / Accv4"));
+            return resolve(null);
         }
 
         return resolve(accv4);
@@ -136,7 +110,7 @@ async function api_accv4P (puuid) {
     return new Promise(async (resolve, reject) => {
 
         let accv4 = await get_asia(encodeURI("riot/account/v1/accounts/by-puuid/" + puuid + "?api_key=" + token_holder));
-        if (!accv4) return reject(new Error("Not Found / Accv4"));
+        if (!accv4) return resolve(null);
 
         try {
             accv4 = {
@@ -147,7 +121,7 @@ async function api_accv4P (puuid) {
         }
 
         catch (error) {
-            return reject(new Error("Parse Failed / Accv4"));
+            return resolve(null);
         }
 
         return resolve(accv4);
@@ -159,7 +133,7 @@ async function api_sumv4 (puuid) {
     return new Promise(async (resolve, reject) => {
 
         let sumv4 = await gety(encodeURI("lol/summoner/v4/summoners/by-puuid/" + puuid + "?api_key=" + token_holder));
-        if (!sumv4) return reject(new Error("Not Found / Sumv4"));
+        if (!sumv4) return resolve(null);
 
         try {
             sumv4 = {
@@ -171,7 +145,7 @@ async function api_sumv4 (puuid) {
         }
 
         catch (error) {
-            return reject(new Error("Parse Failed / Sumv4"));
+            return resolve(null);
         }
 
         return resolve(sumv4);
@@ -183,7 +157,7 @@ async function api_lgev4 (sumv4) {
     return new Promise(async (resolve, reject) => {
 
         let lgev4 = await gety(encodeURI("lol/league/v4/entries/by-summoner/" + sumv4.id + "?api_key=" + token_holder));
-        if (!lgev4) return reject(new Error("Not Found / Lgev4"));
+        if (!lgev4) return resolve(null);
 
         if (lgev4.length > 0) {
 
@@ -227,7 +201,7 @@ async function api_lgev4 (sumv4) {
             }
 
             catch (error) {
-                return reject(new Error("Parse Failed / Lgev4"));
+                return resolve(null);
             }
 
             return resolve(lgeres);
@@ -246,7 +220,7 @@ async function api_sptv5 (sumv4) {
         if (!sptv5) return resolve(null);
 
         let ddver = await ddragon.version();
-        if (!ddver) return reject(new Error("Not Found / ddrver"));
+        if (!ddver) return resolve(null);
 
         try {
             let chmp_tmp;
@@ -275,7 +249,7 @@ async function api_sptv5 (sumv4) {
         }
 
         catch (error) {
-            return reject(new Error("Parse Failed / sptv5"));
+            return resolve(null);
         }
 
         return resolve(sptv5);
@@ -287,10 +261,10 @@ async function api_matv5 (sumv4, count) {
     return new Promise(async (resolve, reject) => {
 
         let matv5 = await get_asia(encodeURI("lol/match/v5/matches/by-puuid/" + sumv4.puuid + "/ids?start=0&count=" + count + "&api_key=" + token_holder));
-        if (!matv5) return reject(new Error("Not Found / Matv5"));
+        if (!matv5) return resolve(null);
 
         let ddver = await ddragon.version();
-        if (!ddver) return reject(new Error("Not Found / ddrver"));
+        if (!ddver) return resolve(null);
 
         let matres = new Map();
 
@@ -302,7 +276,7 @@ async function api_matv5 (sumv4, count) {
         }
 
         catch (error) {
-            return reject(new Error("Parse Failed / Matv5"));
+            return resolve(null);
         }
 
         return resolve(matres);
@@ -314,7 +288,7 @@ async function api_getMatchData (sumv4, matv5, ddver) {
     return new Promise(async (resolve, reject) => {
 
         let mat_dt = await get_asia(encodeURI("lol/match/v5/matches/" + matv5 + "?api_key=" + token_holder));
-        if (!mat_dt) return reject(new Error("Not Found / Matv5-getMatchData"));
+        if (!mat_dt) return resolve(null);
         
         try {
             mat_dt = mat_dt["info"];
@@ -356,7 +330,7 @@ async function api_getMatchData (sumv4, matv5, ddver) {
         }
 
         catch (error) {
-            return reject(new Error("Parse Failed / Matv5-getMatchData"));
+            return resolve(null);
         }
 
     });
