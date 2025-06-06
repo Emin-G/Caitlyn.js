@@ -88,6 +88,15 @@ async function getRecentMatch (summoner, count) {
     });
 }
 
+async function getTodayMatch (summoner, count) {
+    return new Promise(async (resolve, reject) => {
+        const matv5 = await api_matv5T(summoner, count);
+        if (!matv5) return resolve({ code: 500, type: "matv5" });
+
+        return resolve(matv5);
+    });
+}
+
 async function api_accv4 (name, tag) {
     return new Promise(async (resolve, reject) => {
 
@@ -289,6 +298,36 @@ async function api_matv5 (sumv4, count) {
     });
 }
 
+async function api_matv5T (sumv4, count) {
+    return new Promise(async (resolve, reject) => {
+
+        let matv5 = await get_asia(encodeURI("lol/match/v5/matches/by-puuid/" + sumv4.puuid + "/ids?start=0&count=" + count + "&api_key=" + token_holder));
+        if (!matv5) return resolve(null);
+
+        let ddver = await ddragon.version();
+        if (!ddver) return resolve(null);
+
+        let matres = new Map();
+
+        try {
+            for (let q in matv5) {
+                let matdata = await api_getMatchData(sumv4, matv5[q], ddver);
+                let matDate = new Date(matdata.time);
+                let nowDate = new Date();
+                if (matDate.getFullYear() != nowDate.getFullYear() || matDate.getMonth() != nowDate.getMonth() || matDate.getDate() != nowDate.getDate()) break;
+                matres[matdata[0]] = matdata[1];
+            }
+        }
+
+        catch (error) {
+            return resolve(null);
+        }
+
+        return resolve(matres);
+
+    });
+}
+
 async function api_getMatchData (sumv4, matv5, ddver) {
     return new Promise(async (resolve, reject) => {
 
@@ -387,5 +426,6 @@ module.exports = {
     getSummoner: getSummoner,
     getSummonerP: getSummonerP,
     getRecentMatch: getRecentMatch,
+    getTodayMatch: getTodayMatch,
     ddragon: require("./ddragon/ddragon")
 }

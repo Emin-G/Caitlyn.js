@@ -1,7 +1,7 @@
 {
   "name": "caitlyn.js",
   "displayName": "Caitlyn",
-  "version": "2.2.6",
+  "version": "2.3.0",
   "description": "복잡한 라이엇 API에서 필요한 정보만 쉽게 가져올 수 있게 해줍니다.",
   "main": "caitlyn.js",
   "type": "commonjs",
