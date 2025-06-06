@@ -13,4 +13,6 @@ async function main () {
 
 }
 
+main();
+
 setTimeout(()=>{}, 1000000);

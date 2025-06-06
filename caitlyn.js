@@ -312,7 +312,7 @@ async function api_matv5T (sumv4, count) {
         try {
             for (let q in matv5) {
                 let matdata = await api_getMatchData(sumv4, matv5[q], ddver);
-                let matDate = new Date(matdata.time);
+                let matDate = new Date(matdata[1].time);
                 let nowDate = new Date();
                 if (matDate.getFullYear() != nowDate.getFullYear() || matDate.getMonth() != nowDate.getMonth() || matDate.getDate() != nowDate.getDate()) break;
                 matres[matdata[0]] = matdata[1];
