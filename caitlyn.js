@@ -361,6 +361,7 @@ async function api_getMatchData (sumv4, matv5, ddver) {
                             "name": ddver.champ.data[sum_mat_dt.championName].name,
                             "level": sum_mat_dt.champLevel
                         },
+                        "cs": sum_mat_dt.totalMinionsKilled,
                         "firstblood": sum_mat_dt.firstBloodKill,
                         "gold": sum_mat_dt.goldEarned,
                         "multiKill": sum_mat_dt.largestMultiKill,
