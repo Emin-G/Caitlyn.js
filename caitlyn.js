@@ -151,7 +151,6 @@ async function api_sumv4 (puuid) {
 
         try {
             sumv4 = {
-                id: sumv4.id,
                 puuid: sumv4.puuid,
                 level: sumv4.summonerLevel,
                 profileIconId: sumv4.profileIconId
@@ -170,7 +169,7 @@ async function api_sumv4 (puuid) {
 async function api_lgev4 (sumv4) {
     return new Promise(async (resolve, reject) => {
 
-        let lgev4 = await gety(encodeURI("lol/league/v4/entries/by-summoner/" + sumv4.id + "?api_key=" + token_holder));
+        let lgev4 = await gety(encodeURI("lol/league/v4/entries/by-puuid/" + sumv4.puuid + "?api_key=" + token_holder));
         if (!lgev4) return resolve(null);
 
         if (lgev4.length > 0) {
@@ -241,7 +240,7 @@ async function api_sptv5 (sumv4) {
 
             //Catch Player from Game List
             for (let c in sptv5["participants"]) {
-                if (sptv5["participants"][c]["summonerId"] === sumv4.id) {
+                if (sptv5["participants"][c]["puuid"] === sumv4.puuid) {
                     chmp_tmp = sptv5["participants"][c]["championId"];
                     break;
                 }
