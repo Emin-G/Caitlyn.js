@@ -1,237 +1,75 @@
 [
     {
         "queueId": 0,
-        "map": "사용자 설정",
-        "description": "게임 진행 중",
+        "map": "사용자 설정 게임",
+        "description": "",
         "notes": null
-    },
-    {
-        "queueId": 2,
-        "map": "소환사의 협곡",
-        "description": "5v5 Blind Pick games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 430"
-    },
-    {
-        "queueId": 4,
-        "map": "소환사의 협곡",
-        "description": "5v5 Ranked Solo games",
-        "notes": "Deprecated in favor of queueId 420"
-    },
-    {
-        "queueId": 6,
-        "map": "소환사의 협곡",
-        "description": "5v5 Ranked Premade games",
-        "notes": "Game mode deprecated"
-    },
-    {
-        "queueId": 7,
-        "map": "소환사의 협곡",
-        "description": "Co-op vs AI games",
-        "notes": "Deprecated in favor of queueId 32 and 33"
-    },
-    {
-        "queueId": 8,
-        "map": "Twisted Treeline",
-        "description": "3v3 Normal games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 460"
-    },
-    {
-        "queueId": 9,
-        "map": "Twisted Treeline",
-        "description": "3v3 Ranked Flex games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 470"
-    },
-    {
-        "queueId": 14,
-        "map": "소환사의 협곡",
-        "description": "5v5 Draft Pick games",
-        "notes": "Deprecated in favor of queueId 400"
-    },
-    {
-        "queueId": 16,
-        "map": "Crystal Scar",
-        "description": "5v5 Dominion Blind Pick games",
-        "notes": "Game mode deprecated"
-    },
-    {
-        "queueId": 17,
-        "map": "Crystal Scar",
-        "description": "5v5 Dominion Draft Pick games",
-        "notes": "Game mode deprecated"
-    },
-    {
-        "queueId": 25,
-        "map": "Crystal Scar",
-        "description": "Dominion Co-op vs AI games",
-        "notes": "Game mode deprecated"
-    },
-    {
-        "queueId": 31,
-        "map": "소환사의 협곡",
-        "description": "Co-op vs AI Intro Bot games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 830"
-    },
-    {
-        "queueId": 32,
-        "map": "소환사의 협곡",
-        "description": "Co-op vs AI Beginner Bot games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 840"
-    },
-    {
-        "queueId": 33,
-        "map": "소환사의 협곡",
-        "description": "Co-op vs AI Intermediate Bot games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 850"
-    },
-    {
-        "queueId": 41,
-        "map": "Twisted Treeline",
-        "description": "3v3 Ranked Team games",
-        "notes": "Game mode deprecated"
-    },
-    {
-        "queueId": 42,
-        "map": "소환사의 협곡",
-        "description": "5v5 Ranked Team games",
-        "notes": "Game mode deprecated"
-    },
-    {
-        "queueId": 52,
-        "map": "Twisted Treeline",
-        "description": "Co-op vs AI games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 800"
-    },
-    {
-        "queueId": 61,
-        "map": "소환사의 협곡",
-        "description": "5v5 Team Builder games",
-        "notes": "Game mode deprecated"
-    },
-    {
-        "queueId": 65,
-        "map": "칼바람 나락",
-        "description": "5v5 ARAM games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 450"
-    },
-    {
-        "queueId": 67,
-        "map": "칼바람 나락",
-        "description": "ARAM Co-op vs AI games",
-        "notes": "Game mode deprecated"
-    },
-    {
-        "queueId": 70,
-        "map": "소환사의 협곡",
-        "description": "One for All games",
-        "notes": "Deprecated in patch 8.6 in favor of queueId 1020"
     },
     {
         "queueId": 72,
         "map": "칼바람 나락",
-        "description": "1v1 Snowdown Showdown games",
+        "description": "1v1 눈싸움",
         "notes": null
     },
     {
         "queueId": 73,
         "map": "칼바람 나락",
-        "description": "2v2 Snowdown Showdown games",
+        "description": "2v2 눈싸움",
         "notes": null
     },
     {
         "queueId": 75,
         "map": "소환사의 협곡",
-        "description": "6v6 Hexakill games",
+        "description": "헥사킬",
         "notes": null
     },
     {
         "queueId": 76,
         "map": "소환사의 협곡",
-        "description": "U.R.F.",
+        "description": "URF",
         "notes": null
     },
     {
         "queueId": 78,
         "map": "칼바람 나락",
-        "description": "One For All: Mirror Mode games",
+        "description": "단일 챔피언",
         "notes": null
     },
     {
         "queueId": 83,
         "map": "소환사의 협곡",
-        "description": "AI 상대 대전 - U.R.F.",
+        "description": "URF: AI 대전",
         "notes": null
     },
     {
-        "queueId": 91,
-        "map": "소환사의 협곡",
-        "description": "Doom Bots Rank 1 games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 950"
-    },
-    {
-        "queueId": 92,
-        "map": "소환사의 협곡",
-        "description": "Doom Bots Rank 2 games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 950"
-    },
-    {
-        "queueId": 93,
-        "map": "소환사의 협곡",
-        "description": "Doom Bots Rank 5 games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 950"
-    },
-    {
-        "queueId": 96,
-        "map": "Crystal Scar",
-        "description": "Ascension games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 910"
-    },
-    {
         "queueId": 98,
-        "map": "Twisted Treeline",
-        "description": "6v6 Hexakill games",
+        "map": "뒤틀린 숲",
+        "description": "헥사킬",
         "notes": null
     },
     {
         "queueId": 100,
-        "map": "Butcher's Bridge",
-        "description": "5v5 ARAM games",
+        "map": "도살자의 다리",
+        "description": "무작위 총력전",
         "notes": null
-    },
-    {
-        "queueId": 300,
-        "map": "칼바람 나락",
-        "description": "Legend of the Poro King games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 920"
     },
     {
         "queueId": 310,
         "map": "소환사의 협곡",
-        "description": "Nemesis games",
+        "description": "네메시스",
         "notes": null
     },
     {
         "queueId": 313,
         "map": "소환사의 협곡",
-        "description": "Black Market Brawlers games",
+        "description": "블랙 마켓",
         "notes": null
-    },
-    {
-        "queueId": 315,
-        "map": "소환사의 협곡",
-        "description": "Nexus Siege games",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 940"
     },
     {
         "queueId": 317,
-        "map": "Crystal Scar",
-        "description": "Definitely Not Dominion games",
+        "map": "수정의 상처",
+        "description": "가짜 도미니언",
         "notes": null
-    },
-    {
-        "queueId": 318,
-        "map": "소환사의 협곡",
-        "description": "U.R.F.",
-        "notes": "Deprecated in patch 7.19 in favor of queueId 900"
     },
     {
         "queueId": 325,
@@ -242,14 +80,8 @@
     {
         "queueId": 400,
         "map": "소환사의 협곡",
-        "description": "토너먼트 드래프트",
+        "description": "교차 선택",
         "notes": null
-    },
-    {
-        "queueId": 410,
-        "map": "소환사의 협곡",
-        "description": "5v5 Ranked Dynamic games",
-        "notes": "Game mode deprecated in patch 6.22"
     },
     {
         "queueId": 420,
@@ -260,7 +92,7 @@
     {
         "queueId": 430,
         "map": "소환사의 협곡",
-        "description": "일반",
+        "description": "비공개 선택",
         "notes": null
     },
     {
@@ -276,27 +108,27 @@
         "notes": null
     },
     {
-        "queueId": 460,
-        "map": "Twisted Treeline",
-        "description": "3v3 Blind Pick games",
-        "notes": "Deprecated in patch 9.23"
+        "queueId": 480,
+        "map": "소환사의 협곡",
+        "description": "스위프트 플레이",
+        "notes": null
     },
     {
-        "queueId": 470,
-        "map": "Twisted Treeline",
-        "description": "3v3 Ranked Flex games",
-        "notes": "Deprecated in patch 9.23"
+        "queueId": 490,
+        "map": "소환사의 협곡",
+        "description": "신속 대전",
+        "notes": null
     },
     {
         "queueId": 600,
         "map": "소환사의 협곡",
-        "description": "Blood Hunt Assassin games",
+        "description": "암살자 피의 사냥",
         "notes": null
     },
     {
         "queueId": 610,
-        "map": "Cosmic Ruins",
-        "description": "Dark Star: Singularity games",
+        "map": "코즈믹 유적",
+        "description": "다크 스타: 싱귤래리티",
         "notes": null
     },
     {
@@ -308,170 +140,158 @@
     {
         "queueId": 720,
         "map": "칼바람 나락",
-        "description": "격전 - 무작위 총력전",
+        "description": "격전",
         "notes": null
-    },
-    {
-        "queueId": 800,
-        "map": "Twisted Treeline",
-        "description": "AI 상대 대전 - 중급",
-        "notes": "Deprecated in patch 9.23"
-    },
-    {
-        "queueId": 810,
-        "map": "Twisted Treeline",
-        "description": "AI 상대 대전 - 입문",
-        "notes": "Deprecated in patch 9.23"
     },
     {
         "queueId": 820,
-        "map": "Twisted Treeline",
-        "description": "AI 상대 대전 - 초보",
+        "map": "뒤틀린 숲",
+        "description": "AI 대전: 초보",
         "notes": null
     },
     {
-        "queueId": 830,
+        "queueId": 870,
         "map": "소환사의 협곡",
-        "description": "AI 상대 대전 - 입문",
+        "description": "AI 대전: 입문",
         "notes": null
     },
     {
-        "queueId": 840,
+        "queueId": 880,
         "map": "소환사의 협곡",
-        "description": "AI 상대 대전 - 초보",
+        "description": "AI 대전: 초보",
         "notes": null
     },
     {
-        "queueId": 850,
+        "queueId": 890,
         "map": "소환사의 협곡",
-        "description": "AI 상대 대전 - 중급",
+        "description": "AI 대전: 중급",
         "notes": null
     },
     {
         "queueId": 900,
         "map": "소환사의 협곡",
-        "description": "U.R.F.",
+        "description": "ARURF",
         "notes": null
     },
     {
         "queueId": 910,
-        "map": "Crystal Scar",
-        "description": "Ascension games",
+        "map": "수정의 상처",
+        "description": "승천",
         "notes": null
     },
     {
         "queueId": 920,
         "map": "칼바람 나락",
-        "description": "Legend of the Poro King games",
+        "description": "포로 왕",
         "notes": null
     },
     {
         "queueId": 940,
         "map": "소환사의 협곡",
-        "description": "Nexus Siege games",
+        "description": "넥서스 공성전",
         "notes": null
     },
     {
         "queueId": 950,
         "map": "소환사의 협곡",
-        "description": "Doom Bots Voting games",
+        "description": "둠 봇",
         "notes": null
     },
     {
         "queueId": 960,
         "map": "소환사의 협곡",
-        "description": "Doom Bots Standard games",
+        "description": "둠 봇",
         "notes": null
     },
     {
         "queueId": 980,
-        "map": "Valoran City Park",
-        "description": "Star Guardian Invasion: Normal games",
+        "map": "발로란 도시 공원",
+        "description": "별 수호자 침공",
         "notes": null
     },
     {
         "queueId": 990,
-        "map": "Valoran City Park",
-        "description": "Star Guardian Invasion: Onslaught games",
+        "map": "발로란 도시 공원",
+        "description": "별 수호자 침공",
         "notes": null
     },
     {
         "queueId": 1000,
-        "map": "Overcharge",
-        "description": "PROJECT: Hunters games",
+        "map": "오버차지",
+        "description": "PROJECT: 헌터",
         "notes": null
     },
     {
         "queueId": 1010,
         "map": "소환사의 협곡",
-        "description": "U.R.F.",
+        "description": "눈꽃 ARURF",
         "notes": null
     },
     {
         "queueId": 1020,
         "map": "소환사의 협곡",
-        "description": "One for All games",
+        "description": "단일 챔피언",
         "notes": null
     },
     {
         "queueId": 1030,
-        "map": "Crash Site",
-        "description": "Odyssey Extraction: Intro games",
+        "map": "추락 지점",
+        "description": "오디세이: 입문",
         "notes": null
     },
     {
         "queueId": 1040,
-        "map": "Crash Site",
-        "description": "Odyssey Extraction: Cadet games",
+        "map": "추락 지점",
+        "description": "오디세이: 사관생도",
         "notes": null
     },
     {
         "queueId": 1050,
-        "map": "Crash Site",
-        "description": "Odyssey Extraction: Crewmember games",
+        "map": "추락 지점",
+        "description": "오디세이: 대원",
         "notes": null
     },
     {
         "queueId": 1060,
-        "map": "Crash Site",
-        "description": "Odyssey Extraction: Captain games",
+        "map": "추락 지점",
+        "description": "오디세이: 대장",
         "notes": null
     },
     {
         "queueId": 1070,
-        "map": "Crash Site",
-        "description": "Odyssey Extraction: Onslaught games",
+        "map": "추락 지점",
+        "description": "오디세이: 온슬롯",
         "notes": null
     },
     {
         "queueId": 1090,
-        "map": "Convergence",
-        "description": "Teamfight Tactics games",
+        "map": "전략적 팀 전투",
+        "description": "일반",
         "notes": null
     },
     {
         "queueId": 1100,
-        "map": "Convergence",
-        "description": "Ranked Teamfight Tactics games",
+        "map": "전략적 팀 전투",
+        "description": "랭크",
         "notes": null
     },
     {
         "queueId": 1110,
-        "map": "Convergence",
-        "description": "Teamfight Tactics Tutorial games",
+        "map": "전략적 팀 전투",
+        "description": "튜토리얼",
         "notes": null
     },
     {
         "queueId": 1111,
-        "map": "Convergence",
-        "description": "Teamfight Tactics test games",
+        "map": "전략적 팀 전투",
+        "description": "테스트",
         "notes": null
     },
     {
-        "queueId": 1200,
-        "map": "돌격 넥서스",
-        "description": "돌격 넥서스",
-        "notes": "Deprecated in patch 9.2"
+        "queueId": 1210,
+        "map": "전략적 팀 전투",
+        "description": "배불뚝이의 보물",
+        "notes": "null"
     },
     {
         "queueId": 1300,
@@ -486,9 +306,45 @@
         "notes": null
     },
     {
+        "queueId": 1700,
+        "map": "아레나",
+        "description": "일반",
+        "notes": null
+    },
+    {
+        "queueId": 1710,
+        "map": "아레나",
+        "description": "일반",
+        "notes": "16 player lobby"
+    },
+    {
+        "queueId": 1810,
+        "map": "스웜",
+        "description": "스웜: 1인",
+        "notes": "Swarm Mode 1 player"
+    },
+    {
+        "queueId": 1820,
+        "map": "스웜",
+        "description": "스웜: 2인",
+        "notes": "Swarm Mode 2 players"
+    },
+    {
+        "queueId": 1830,
+        "map": "스웜",
+        "description": "스웜: 3인",
+        "notes": "Swarm Mode 3 players"
+    },
+    {
+        "queueId": 1840,
+        "map": "스웜",
+        "description": "스웜: 4인",
+        "notes": "Swarm Mode 4 players"
+    },
+    {
         "queueId": 1900,
         "map": "소환사의 협곡",
-        "description": "U.R.F.",
+        "description": "URF",
         "notes": null
     },
     {
@@ -507,6 +363,18 @@
         "queueId": 2020,
         "map": "소환사의 협곡",
         "description": "튜토리얼 3",
+        "notes": null
+    },
+    {
+        "queueId": 2300,
+        "map": "밴들 숲",
+        "description": "난투",
+        "notes": null
+    },
+    {
+        "queueId": 2400,
+        "map": "칼바람 나락",
+        "description": "아수라장",
         "notes": null
     }
 ]

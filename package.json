@@ -1,7 +1,7 @@
 {
   "name": "caitlyn.js",
   "displayName": "Caitlyn",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "복잡한 라이엇 API에서 필요한 정보만 쉽게 가져올 수 있게 해줍니다.",
   "main": "caitlyn.js",
   "type": "commonjs",
@@ -35,6 +35,6 @@
     "LeagueOfLegends"
   ],
   "dependencies": {
-    "axios": "^1.9.0"
+    "axios": "^1.13.2"
   }
 }
